@@ -1,0 +1,287 @@
+{
+  "_version": "1.73.1",
+  "sap.app": {
+    "id": "br.com.accao.gsm.accaogsmovp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:ovp",
+      "version": "1.33.0",
+      "toolsId": "d878ccb5-d2a5-4e1f-b9c4-d58f7c96911b"
+    },
+    "dataSources": {
+      "ACCAO_GSM_Q_ABAST_OVP_CDS_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FACCAO%2FGSM_Q_ABAST_OVP_CDS_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/ACCAO_GSM_Q_ABAST_OVP_CDS_VAN.xml"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata/accao/GSM_Q_ABAST_OVP_CDS/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ACCAO_GSM_Q_ABAST_OVP_CDS_VAN",
+            "annotation"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "accaogsm-overview": {
+          "semanticObject": "accaogsm",
+          "action": "overview",
+          "title": "{{accaogsm-overview.flpTitle}}",
+          "subTitle": "{{accaogsm-overview.flpSubtitle}}",
+          "icon": "sap-icon://business-objects-experience",
+          "info": "Acção GSM",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.136.10",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.f": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ovp": {},
+        "sap.ui.rta": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "br.com.accao.gsm.accaogsmovp.i18n.i18n"
+        }
+      },
+      "mainModel": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false,
+          "metadataUrlParams": {
+            "sap-value-list": "none"
+          }
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [],
+      "targets": {}
+    }
+  },
+  "sap.ovp": {
+    "globalFilterModel": "mainModel",
+    "globalFilterEntityType": "xACCAOxGSM_Q_ABAST_OVPType",
+    "globalFilterEntitySet": "xACCAOxGSM_Q_ABAST_OVP",
+    "containerLayout": "resizable",
+    "enableLiveFilter": true,
+    "considerAnalyticalParameters": false,
+    "cards": {
+      "card01_gasto_mensal": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Gasto por mês",
+          "subTitle": "Últimos 12 meses",
+          "entitySet": "xACCAOxGSM_Q_ABAST_OVP",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#GastoMensal",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#GastoMensal",
+          "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Ult12M",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#TotalGasto",
+          "defaultSpan": {
+            "rows": 14,
+            "cols": 2
+          }
+        }
+      },
+      "card02_litros_mensal": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Litros de combustível por mês",
+          "subTitle": "Últimos 12 meses",
+          "entitySet": "xACCAOxGSM_Q_ABAST_OVP",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#LitrosMensal",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#LitrosMensal",
+          "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Ult12M",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#TotalLitros",
+          "defaultSpan": {
+            "rows": 14,
+            "cols": 2
+          }
+        }
+      },
+      "card03_por_tipo": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Quantidade por tipo de combustível",
+          "subTitle": "Últimos 12 meses",
+          "entitySet": "xACCAOxGSM_Q_ABAST_OVP",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PorTipo",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#PorTipo",
+          "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Ult12M"
+        }
+      },
+      "card04_diesel_arla": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Diesel e Arla por mês",
+          "subTitle": "Litros, últimos 12 meses",
+          "entitySet": "xACCAOxGSM_Q_ABAST_OVP",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#DieselArla",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#DieselArla",
+          "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Ult12M",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#RelacaoArla",
+          "defaultSpan": {
+            "rows": 14,
+            "cols": 2
+          }
+        }
+      },
+      "card05_preco_tipo": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Preço médio por litro e tipo",
+          "subTitle": "Combustíveis, últimos 12 meses",
+          "entitySet": "xACCAOxGSM_Q_ABAST_OVP",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PrecoPorTipo",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#PrecoPorTipo",
+          "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Ult12MComb"
+        }
+      },
+      "card06_top_veiculos": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Top 10 veículos",
+          "subTitle": "Litros de combustível, últimos 12 meses",
+          "entitySet": "xACCAOxGSM_Q_ABAST_OVP",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TopVeiculos",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#TopVeiculos",
+          "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Ult12M"
+        }
+      },
+      "card07_kml_veiculos": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Consumo por veículo (km/l)",
+          "subTitle": "10 maiores, últimos 12 meses",
+          "entitySet": "xACCAOxGSM_Q_ABAST_OVP",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#KmlVeiculos",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#KmlVeiculos",
+          "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Ult12MComb",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#CoberturaKm"
+        }
+      },
+      "card08_top_postos": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Top 10 postos",
+          "subTitle": "Litros de combustível, últimos 12 meses",
+          "entitySet": "xACCAOxGSM_Q_ABAST_OVP",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TopPostos",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#TopPostos",
+          "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Ult12M"
+        }
+      },
+      "card09_gasto_tipo": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Gasto por tipo de combustível",
+          "subTitle": "R$, últimos 12 meses",
+          "entitySet": "xACCAOxGSM_Q_ABAST_OVP",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#GastoPorTipo",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#GastoPorTipo",
+          "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Ult12M"
+        }
+      },
+      "card10_gasto_medio_tipo": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Gasto médio por abastecimento",
+          "subTitle": "R$ por tipo, últimos 12 meses",
+          "entitySet": "xACCAOxGSM_Q_ABAST_OVP",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#GastoMedioTipo",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#GastoMedioTipo",
+          "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Ult12M"
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "analytical"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "brcomaccaogsmaccaogsmovp"
+  }
+}

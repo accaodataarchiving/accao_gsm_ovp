@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="ACCAO_GSM_OVP.annotations" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType">
+
+        <Annotation Term="UI.HeaderInfo">
+          <Record Type="UI.HeaderInfoType">
+            <PropertyValue Property="TypeName" String="Abastecimento"/>
+            <PropertyValue Property="TypeNamePlural" String="Abastecimentos"/>
+            <PropertyValue Property="Title">
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="Placa"/>
+              </Record>
+            </PropertyValue>
+            <PropertyValue Property="Description">
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="TipoCombustivelTexto"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <!-- ============================================================ -->
+        <!-- Filtros globais                                             -->
+        <!-- ============================================================ -->
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>DataAbastecimento</PropertyPath>
+            <PropertyPath>Placa</PropertyPath>
+            <PropertyPath>Posto</PropertyPath>
+          </Collection>
+        </Annotation>
+        
+        <!-- ============================================================ -->
+        <!-- SelectionVariants: janelas de tempo via flags do cubo       -->
+        <!-- ============================================================ -->
+        <Annotation Term="UI.SelectionVariant" Qualifier="Ult12M">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="Text" String="Últimos 12 meses"/>
+            <PropertyValue Property="SelectOptions">
+              <Collection>
+                <Record Type="UI.SelectOptionType">
+                  <PropertyValue Property="PropertyName" PropertyPath="Ult12M"/>
+                  <PropertyValue Property="Ranges">
+                    <Collection>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" String="X"/>
+                      </Record>
+                    </Collection>
+                  </PropertyValue>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.SelectionVariant" Qualifier="Ult30D">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="Text" String="Últimos 30 dias"/>
+            <PropertyValue Property="SelectOptions">
+              <Collection>
+                <Record Type="UI.SelectOptionType">
+                  <PropertyValue Property="PropertyName" PropertyPath="Ult30D"/>
+                  <PropertyValue Property="Ranges">
+                    <Collection>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" String="X"/>
+                      </Record>
+                    </Collection>
+                  </PropertyValue>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.SelectionVariant" Qualifier="Ult12MComb">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="Text" String="Últimos 12 meses, só combustíveis"/>
+            <PropertyValue Property="SelectOptions">
+              <Collection>
+                <Record Type="UI.SelectOptionType">
+                  <PropertyValue Property="PropertyName" PropertyPath="Ult12M"/>
+                  <PropertyValue Property="Ranges">
+                    <Collection>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" String="X"/>
+                      </Record>
+                    </Collection>
+                  </PropertyValue>
+                </Record>
+                <Record Type="UI.SelectOptionType">
+                  <PropertyValue Property="PropertyName" PropertyPath="TipoCombustivel"/>
+                  <PropertyValue Property="Ranges">
+                    <Collection>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" String="D"/>
+                      </Record>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" String="5"/>
+                      </Record>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" String="G"/>
+                      </Record>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" String="T"/>
+                      </Record>
+                    </Collection>
+                  </PropertyValue>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <!-- ============================================================ -->
+        <!-- CARD01: Gasto por mês                                       -->
+        <!-- ============================================================ -->
+        <Annotation Term="UI.Chart" Qualifier="GastoMensal">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Gasto por mês"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>AnoMes</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="AnoMes"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>GastoTotal</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="GastoTotal"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.PresentationVariant" Qualifier="GastoMensal">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="AnoMes"/>
+                  <PropertyValue Property="Descending" Bool="false"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#GastoMensal</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.DataPoint" Qualifier="TotalGasto">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Title" String="Total (R$)"/>
+            <PropertyValue Property="Value" Path="GastoTotal"/>
+          </Record>
+        </Annotation>
+        
+        <!-- ============================================================ -->
+        <!-- CARD02: Litros de combustível por mês                       -->
+        <!-- ============================================================ -->
+        <Annotation Term="UI.Chart" Qualifier="LitrosMensal">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Litros de combustível por mês"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Line"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>AnoMes</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="AnoMes"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>LitrosCombustivel</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="LitrosCombustivel"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.PresentationVariant" Qualifier="LitrosMensal">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="AnoMes"/>
+                  <PropertyValue Property="Descending" Bool="false"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#LitrosMensal</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.DataPoint" Qualifier="TotalLitros">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Title" String="Total (L)"/>
+            <PropertyValue Property="Value" Path="LitrosCombustivel"/>
+          </Record>
+        </Annotation>
+        
+        <!-- ============================================================ -->
+        <!-- CARD03: Quantidade por tipo de combustível                  -->
+        <!-- ============================================================ -->
+        <Annotation Term="UI.Chart" Qualifier="PorTipo">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Quantidade por tipo de combustível"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>TipoCombustivelTexto</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="TipoCombustivelTexto"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>QuantidadeAbastecida</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="QuantidadeAbastecida"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.PresentationVariant" Qualifier="PorTipo">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="QuantidadeAbastecida"/>
+                  <PropertyValue Property="Descending" Bool="true"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#PorTipo</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <!-- ============================================================ -->
+        <!-- CARD04: Diesel e Arla por mês                               -->
+        <!-- ============================================================ -->
+        <Annotation Term="UI.Chart" Qualifier="DieselArla">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Diesel e Arla por mês"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>AnoMes</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="AnoMes"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>LitrosDiesel</PropertyPath>
+                <PropertyPath>LitrosArla</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="LitrosDiesel"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="LitrosArla"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.PresentationVariant" Qualifier="DieselArla">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="AnoMes"/>
+                  <PropertyValue Property="Descending" Bool="false"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#DieselArla</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.DataPoint" Qualifier="RelacaoArla">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Title" String="Arla / Diesel (%)"/>
+            <PropertyValue Property="Value" Path="RelacaoArlaDiesel"/>
+          </Record>
+        </Annotation>
+        
+        <!-- ============================================================ -->
+        <!-- CARD05: Preço médio por litro e tipo                        -->
+        <!-- ============================================================ -->
+        <Annotation Term="UI.Chart" Qualifier="PrecoPorTipo">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Preço médio por litro e tipo"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>TipoCombustivelTexto</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="TipoCombustivelTexto"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>PrecoMedioLitro</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="PrecoMedioLitro"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.PresentationVariant" Qualifier="PrecoPorTipo">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="PrecoMedioLitro"/>
+                  <PropertyValue Property="Descending" Bool="true"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#PrecoPorTipo</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <!-- ============================================================ -->
+        <!-- CARD06: Top 10 veículos                                     -->
+        <!-- ============================================================ -->
+        <Annotation Term="UI.Chart" Qualifier="TopVeiculos">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Top 10 veículos"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Placa</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Placa"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>LitrosCombustivel</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="LitrosCombustivel"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.PresentationVariant" Qualifier="TopVeiculos">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="MaxItems" Int="10"/>
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="LitrosCombustivel"/>
+                  <PropertyValue Property="Descending" Bool="true"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#TopVeiculos</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <!-- ============================================================ -->
+        <!-- CARD07: Consumo por veículo (km/l)                          -->
+        <!-- ============================================================ -->
+        <Annotation Term="UI.Chart" Qualifier="KmlVeiculos">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Consumo por veículo (km/l)"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Placa</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Placa"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>KmPorLitro</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="KmPorLitro"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.PresentationVariant" Qualifier="KmlVeiculos">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="MaxItems" Int="10"/>
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="KmPorLitro"/>
+                  <PropertyValue Property="Descending" Bool="true"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#KmlVeiculos</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.DataPoint" Qualifier="CoberturaKm">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Title" String="Cobertura de km (% dos litros)"/>
+            <PropertyValue Property="Value" Path="CoberturaKm"/>
+          </Record>
+        </Annotation>
+        
+        <!-- ============================================================ -->
+        <!-- CARD08: Top 10 postos                                       -->
+        <!-- ============================================================ -->
+        <Annotation Term="UI.Chart" Qualifier="TopPostos">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Top 10 postos"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Posto</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Posto"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>LitrosCombustivel</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="LitrosCombustivel"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.PresentationVariant" Qualifier="TopPostos">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="MaxItems" Int="10"/>
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="LitrosCombustivel"/>
+                  <PropertyValue Property="Descending" Bool="true"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#TopPostos</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <!-- ============================================================ -->
+        <!-- CARD09: Gasto por tipo de combustível                       -->
+        <!-- ============================================================ -->
+        <Annotation Term="UI.Chart" Qualifier="GastoPorTipo">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Gasto por tipo de combustível"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>TipoCombustivelTexto</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="TipoCombustivelTexto"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>GastoTotal</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="GastoTotal"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.PresentationVariant" Qualifier="GastoPorTipo">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="GastoTotal"/>
+                  <PropertyValue Property="Descending" Bool="true"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#GastoPorTipo</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <!-- ============================================================ -->
+        <!-- CARD10: Gasto médio por abastecimento                       -->
+        <!-- ============================================================ -->
+        <Annotation Term="UI.Chart" Qualifier="GastoMedioTipo">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Gasto médio por abastecimento"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>TipoCombustivelTexto</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="TipoCombustivelTexto"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>GastoMedioAbast</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="GastoMedioAbast"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+        <Annotation Term="UI.PresentationVariant" Qualifier="GastoMedioTipo">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="GastoMedioAbast"/>
+                  <PropertyValue Property="Descending" Bool="true"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#GastoMedioTipo</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        
+
+      </Annotations>
+
+      <!-- Labels fixos em PT: os sap:label do $metadata deste serviço vêm trocados   -->
+      <!-- entre propriedades; estes Common.Label sobrescrevem para os campos usados.  -->
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/DataAbastecimento">
+        <Annotation Term="Common.Label" String="Data do Abastecimento"/>
+        <Annotation Term="Common.FilterExpressionType" EnumMember="Common.FilterExpressionType/SingleRange"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/Placa">
+        <Annotation Term="Common.Label" String="Placa"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/TipoCombustivel">
+        <Annotation Term="Common.Label" String="Tipo de Combustível (código)"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/TipoCombustivelTexto">
+        <Annotation Term="Common.Label" String="Tipo de Combustível"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/Posto">
+        <Annotation Term="Common.Label" String="Posto"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/CentroCusto">
+        <Annotation Term="Common.Label" String="Centro de Custo"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/OrigemLancamento">
+        <Annotation Term="Common.Label" String="Origem do Lançamento"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/AnoMes">
+        <Annotation Term="Common.Label" String="Ano/Mês"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/GastoTotal">
+        <Annotation Term="Common.Label" String="Gasto Total"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/LitrosCombustivel">
+        <Annotation Term="Common.Label" String="Litros de Combustível"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/QuantidadeAbastecida">
+        <Annotation Term="Common.Label" String="Quantidade"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/LitrosDiesel">
+        <Annotation Term="Common.Label" String="Litros de Diesel"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/LitrosArla">
+        <Annotation Term="Common.Label" String="Litros de Arla"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/PrecoMedioLitro">
+        <Annotation Term="Common.Label" String="Preço Médio por Litro"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/GastoMedioAbast">
+        <Annotation Term="Common.Label" String="Gasto Médio por Abastecimento"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/KmPorLitro">
+        <Annotation Term="Common.Label" String="Consumo (km/l)"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/RelacaoArlaDiesel">
+        <Annotation Term="Common.Label" String="Arla / Diesel (%)"/>
+      </Annotations>
+      <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/CoberturaKm">
+        <Annotation Term="Common.Label" String="Cobertura de Km (% dos litros)"/>
+      </Annotations>
+
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ODM',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.ODM.v1" Alias="SAP__ODM"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="xACCAOxGSM_Q_ABAST_OVP_CDS" xml:lang="pt" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="xACCAOxGSM_Q_ABAST_OVPType" sap:label="Acção GSM - Abastecimento (OVP)" sap:semantics="aggregate" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" sap:filterable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TotaledProperties" Type="Edm.String" sap:aggregation-role="totaled-properties-list" sap:is-annotation="true" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemPedido" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Sem Pedido" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CodigoRegiao" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Região" sap:quickinfo="Código da Região/Fazenda" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DocMaterial" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Doc. Material" sap:quickinfo="Número do documento do material" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="UnidadeLitro" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="UNIDADELITRO" sap:creatable="false" sap:updatable="false" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="Fornecedor" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Fornecedor" sap:quickinfo="Nº conta do fornecedor" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DataAbastecimento" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Data do Abastecimento" sap:creatable="false" sap:updatable="false" sap:semantics="yearmonthday"/>
+                <Property Name="DataAbastecimento_T" Type="Edm.String" MaxLength="10" sap:label="Data da medição" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Equipamento" Type="Edm.String" MaxLength="18" sap:aggregation-role="dimension" sap:label="Data do Abastecimento (Descrição)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ErroRegistro" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Data da medição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Moeda" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="Equipamento" sap:quickinfo="Nº equipamento" sap:creatable="false" sap:updatable="false" sap:value-list="standard" sap:semantics="currency-code"/>
+                <Property Name="NumeroNFe" Type="Edm.String" MaxLength="9" sap:aggregation-role="dimension" sap:label="Erro de Registro" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Bomba" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="Moeda" sap:quickinfo="Código da moeda" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DocNotaFiscal" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Nº NF-e" sap:quickinfo="Número NFe" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Placa" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:label="Bomba" sap:quickinfo="ID Bomba" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="NaoValidado" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Doc. Nota Fiscal" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Bico" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="Nº documento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Turno" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Placa" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="EhAfericao" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Placa" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SemDocMaterial" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Não Validado" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Sequencia" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="Bico" sap:quickinfo="ID Bico" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="OrigemLancamentoTexto" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:label="Turno" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AnoMes" Type="Edm.String" MaxLength="6" sap:aggregation-role="dimension" sap:label="Turno" sap:quickinfo="Aferição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="IdBloqueioExterno" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Sem Doc. Material" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="UnidadeMedida" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="Sequência" sap:creatable="false" sap:updatable="false" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="Ult12M" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Sequencial para abastecimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CnpjPosto" Type="Edm.String" MaxLength="16" sap:aggregation-role="dimension" sap:label="Origem do Lançamento" sap:quickinfo="Ano/Mês" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="OrigemPosto" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Ano mês" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TipoCombustivel" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="Bloqueio Externo (id)" sap:quickinfo="Id do Bloqueio Externo" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="Pedido" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="UNIDADEMEDIDA" sap:quickinfo="Últimos 12 Meses" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="OrigemLancamento" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="CNPJ do Posto" sap:quickinfo="Nº ID fiscal 1" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="DescBloqueioExterno" Type="Edm.String" MaxLength="30" sap:aggregation-role="dimension" sap:label="Posto Interno/Externo" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CentroCusto" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Tipo (código)" sap:quickinfo="Tipo de Combustível" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="IdAbastecimento" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Pedido" sap:quickinfo="Nº do documento de compras" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="StatusPedido" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="Origem (código)" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="Ult30D" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Online / CTF / Manual" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Posto" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="Bloqueio Externo" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SemNotaFiscal" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Desc do Boqueio Externo" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TipoCombustivelTexto" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:label="Centro de Custo" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="StatusAbastecimento" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="Centro de custo" sap:quickinfo="Id do Abastecimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CodigoOperacao" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="ID Abastecimento (OCP)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="GastoTotal" Type="Edm.Decimal" Precision="42" Scale="2" sap:aggregation-role="measure" sap:filterable="false" sap:text="GastoTotal_F" sap:unit="Moeda" sap:updatable="false" sap:variable-scale="true" sap:label="Status do Pedido" sap:quickinfo="Status do Abastecimento no Pedido" sap:creatable="false"/>
+                <Property Name="GastoTotal_F" Type="Edm.String" MaxLength="60" sap:label="Últimos 30 Dias" sap:quickinfo="Posto" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="GastoCombustivel" Type="Edm.Decimal" Precision="42" Scale="2" sap:aggregation-role="measure" sap:filterable="false" sap:text="GastoCombustivel_F" sap:unit="Moeda" sap:updatable="false" sap:variable-scale="true" sap:label="Posto de Abastecimento" sap:quickinfo="Sem Nota Fiscal" sap:creatable="false"/>
+                <Property Name="GastoCombustivel_F" Type="Edm.String" MaxLength="60" sap:label="Tipo de Combustível" sap:quickinfo="Status do Abastecimento" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="QuantidadeAbastecida" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:filterable="false" sap:text="QuantidadeAbastecida_F" sap:unit="UnidadeMedida" sap:updatable="false" sap:label="Status do Abastecimento" sap:quickinfo="Operação" sap:creatable="false"/>
+                <Property Name="QuantidadeAbastecida_F" Type="Edm.String" MaxLength="60" sap:label="Código da Operação" sap:quickinfo="Gasto Total" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="LitrosCombustivel" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:filterable="false" sap:text="LitrosCombustivel_F" sap:unit="UnidadeLitro" sap:updatable="false" sap:label="Valor Total" sap:quickinfo="Gasto Total (Formatado)" sap:creatable="false"/>
+                <Property Name="LitrosCombustivel_F" Type="Edm.String" MaxLength="60" sap:label="Valor Total" sap:quickinfo="Gasto com Combustível" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="LitrosDiesel" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:filterable="false" sap:text="LitrosDiesel_F" sap:unit="UnidadeLitro" sap:updatable="false" sap:label="Valor Total" sap:quickinfo="Gasto com Combustível (Formatado)" sap:creatable="false"/>
+                <Property Name="LitrosDiesel_F" Type="Edm.String" MaxLength="60" sap:label="Valor Total" sap:quickinfo="Quantidade" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="LitrosArla" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:filterable="false" sap:text="LitrosArla_F" sap:unit="UnidadeLitro" sap:updatable="false" sap:label="Quantidade" sap:quickinfo="Quantidade (Formatado)" sap:creatable="false"/>
+                <Property Name="LitrosArla_F" Type="Edm.String" MaxLength="60" sap:label="Quantidade" sap:quickinfo="Litros de Combustível" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="QtdAbastecimentos" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="QtdAbastecimentos_F" sap:updatable="false" sap:label="Quantidade" sap:creatable="false"/>
+                <Property Name="QtdAbastecimentos_F" Type="Edm.String" MaxLength="60" sap:label="Litros de Combustível (Formatado)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="QtdAfericoes" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="QtdAfericoes_F" sap:updatable="false" sap:label="Quantidade" sap:creatable="false"/>
+                <Property Name="QtdAfericoes_F" Type="Edm.String" MaxLength="60" sap:label="Litros de Diesel" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="QtdErroRegistro" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="QtdErroRegistro_F" sap:updatable="false" sap:label="Quantidade" sap:creatable="false"/>
+                <Property Name="QtdErroRegistro_F" Type="Edm.String" MaxLength="60" sap:label="Litros de Diesel (Formatado)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="QtdNaoValidado" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="QtdNaoValidado_F" sap:updatable="false" sap:label="Quantidade" sap:creatable="false"/>
+                <Property Name="QtdNaoValidado_F" Type="Edm.String" MaxLength="60" sap:label="Litros de Arla" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="QtdSemDocMaterial" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="QtdSemDocMaterial_F" sap:updatable="false" sap:label="Quantidade" sap:creatable="false"/>
+                <Property Name="QtdSemDocMaterial_F" Type="Edm.String" MaxLength="60" sap:label="Litros de Arla (Formatado)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="QtdSemPedido" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="QtdSemPedido_F" sap:updatable="false" sap:label="Quantidade" sap:creatable="false"/>
+                <Property Name="QtdSemPedido_F" Type="Edm.String" MaxLength="60" sap:label="Nº de Abastecimentos" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="QtdSemNotaFiscal" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="QtdSemNotaFiscal_F" sap:updatable="false" sap:label="Nº de Abastecimentos (Formatado)" sap:creatable="false"/>
+                <Property Name="QtdSemNotaFiscal_F" Type="Edm.String" MaxLength="60" sap:label="Nº de Aferições" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="GastoCombustivelNum" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:filterable="false" sap:text="GastoCombustivelNum_F" sap:updatable="false" sap:label="Nº de Aferições (Formatado)" sap:creatable="false"/>
+                <Property Name="GastoCombustivelNum_F" Type="Edm.String" MaxLength="60" sap:label="Nº Erro de Registro" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="LitrosCombustivelNum" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:filterable="false" sap:text="LitrosCombustivelNum_F" sap:updatable="false" sap:label="Nº Erro de Registro (Formatado)" sap:creatable="false"/>
+                <Property Name="LitrosCombustivelNum_F" Type="Edm.String" MaxLength="60" sap:label="Nº Não Validados" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="KmRodadoValido" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:filterable="false" sap:text="KmRodadoValido_F" sap:updatable="false" sap:label="Nº Não Validados (Formatado)" sap:creatable="false"/>
+                <Property Name="KmRodadoValido_F" Type="Edm.String" MaxLength="60" sap:label="Nº Sem Doc. Material" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="LitrosComKm" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:filterable="false" sap:text="LitrosComKm_F" sap:updatable="false" sap:label="Nº Sem Doc. Material (Formatado)" sap:creatable="false"/>
+                <Property Name="LitrosComKm_F" Type="Edm.String" MaxLength="60" sap:label="Nº Sem Pedido" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="KmRealComMeta" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:filterable="false" sap:text="KmRealComMeta_F" sap:updatable="false" sap:label="Nº Sem Pedido (Formatado)" sap:creatable="false"/>
+                <Property Name="KmRealComMeta_F" Type="Edm.String" MaxLength="60" sap:label="Nº Sem Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="KmEsperadoMeta" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:filterable="false" sap:text="KmEsperadoMeta_F" sap:updatable="false" sap:label="Nº Sem Nota Fiscal (Formatado)" sap:creatable="false"/>
+                <Property Name="KmEsperadoMeta_F" Type="Edm.String" MaxLength="60" sap:label="GASTOCOMBUSTIVELNUM" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="PrecoMedioLitro" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:filterable="false" sap:text="PrecoMedioLitro_F" sap:updatable="false" sap:label="GASTOCOMBUSTIVELNUM (Formatado)" sap:creatable="false"/>
+                <Property Name="PrecoMedioLitro_F" Type="Edm.String" MaxLength="60" sap:label="LITROSCOMBUSTIVELNUM" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="KmPorLitro" Type="Edm.Decimal" Precision="42" Scale="2" sap:aggregation-role="measure" sap:filterable="false" sap:text="KmPorLitro_F" sap:updatable="false" sap:label="LITROSCOMBUSTIVELNUM (Formatado)" sap:creatable="false"/>
+                <Property Name="KmPorLitro_F" Type="Edm.String" MaxLength="60" sap:label="KMRODADOVALIDO" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="AderenciaMeta" Type="Edm.Decimal" Precision="42" Scale="1" sap:aggregation-role="measure" sap:filterable="false" sap:text="AderenciaMeta_F" sap:updatable="false" sap:label="KMRODADOVALIDO (Formatado)" sap:creatable="false"/>
+                <Property Name="AderenciaMeta_F" Type="Edm.String" MaxLength="60" sap:label="LITROSCOMKM" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="CoberturaKm" Type="Edm.Decimal" Precision="42" Scale="1" sap:aggregation-role="measure" sap:filterable="false" sap:text="CoberturaKm_F" sap:updatable="false" sap:label="LITROSCOMKM (Formatado)" sap:creatable="false"/>
+                <Property Name="CoberturaKm_F" Type="Edm.String" MaxLength="60" sap:label="KMREALCOMMETA" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="RelacaoArlaDiesel" Type="Edm.Decimal" Precision="42" Scale="1" sap:aggregation-role="measure" sap:filterable="false" sap:text="RelacaoArlaDiesel_F" sap:unit="RelacaoArlaDiesel_E" sap:updatable="false" sap:label="KMREALCOMMETA (Formatado)" sap:creatable="false"/>
+                <Property Name="RelacaoArlaDiesel_F" Type="Edm.String" MaxLength="60" sap:label="KMESPERADOMETA" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="RelacaoArlaDiesel_E" Type="Edm.String" MaxLength="11" sap:filterable="false" sap:label="KMESPERADOMETA (Formatado)" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="UnidadeLitro" sap:label="Preço Médio por Litro" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UnidadeLitro_ID"/>
+                </Key>
+                <Property Name="UnidadeLitro_ID" Type="Edm.String" Nullable="false" MaxLength="3" sap:text="UnidadeLitroText" sap:label="Preço Médio por Litro (Formatado)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeLitroText" Type="Edm.String" sap:label="Consumo (km/l)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="UnidadeLitroResult" sap:label="Consumo (km/l) (Formatado)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UnidadeLitro"/>
+                </Key>
+                <Property Name="UnidadeLitro" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Aderência à Meta (%)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemPedido" Type="Edm.String" MaxLength="1" sap:label="Aderência à Meta (%) (Formatado)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoRegiao" Type="Edm.String" MaxLength="4" sap:label="Cobertura de Km (% dos litros)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocMaterial" Type="Edm.String" MaxLength="10" sap:label="Cobertura de Km (% dos litros) (Formatado)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Fornecedor" Type="Edm.String" MaxLength="10" sap:label="Arla / Diesel (%)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento" Type="Edm.String" MaxLength="10" sap:text="DataAbastecimento_T" sap:label="Arla / Diesel (%) (Formatado)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento_T" Type="Edm.String" sap:label="Arla / Diesel (%) (Unidade)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Equipamento" Type="Edm.String" MaxLength="18" sap:label="UNIDADELITRO (Dados mestre)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ErroRegistro" Type="Edm.String" MaxLength="1" sap:label="UNIDADELITRO" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Moeda" Type="Edm.String" MaxLength="5" sap:label="UNIDADELITRO (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NumeroNFe" Type="Edm.String" MaxLength="9" sap:label="UNIDADELITRO (Dados lançados)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bomba" Type="Edm.String" MaxLength="2" sap:label="UNIDADELITRO" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocNotaFiscal" Type="Edm.String" MaxLength="10" sap:label="Sem Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Placa" Type="Edm.String" MaxLength="15" sap:label="Região" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NaoValidado" Type="Edm.String" MaxLength="1" sap:label="Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bico" Type="Edm.String" MaxLength="2" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Turno" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EhAfericao" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemDocMaterial" Type="Edm.String" MaxLength="1" sap:label="Equipamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Sequencia" Type="Edm.String" MaxLength="2" sap:label="Erro de Registro" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamentoTexto" Type="Edm.String" MaxLength="20" sap:label="Moeda" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="AnoMes" Type="Edm.String" MaxLength="6" sap:label="Nº NF-e" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdBloqueioExterno" Type="Edm.String" MaxLength="10" sap:label="Bomba" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeMedida" Type="Edm.String" MaxLength="3" sap:label="Doc. Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult12M" Type="Edm.String" MaxLength="1" sap:label="Placa" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CnpjPosto" Type="Edm.String" MaxLength="16" sap:label="Não Validado" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemPosto" Type="Edm.String" MaxLength="1" sap:label="Bico" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivel" Type="Edm.String" MaxLength="2" sap:label="Turno" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Pedido" Type="Edm.String" MaxLength="10" sap:label="Aferição" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamento" Type="Edm.String" MaxLength="1" sap:label="Sem Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DescBloqueioExterno" Type="Edm.String" MaxLength="30" sap:label="Sequência" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CentroCusto" Type="Edm.String" MaxLength="10" sap:label="Origem do Lançamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdAbastecimento" Type="Edm.String" MaxLength="10" sap:label="Ano/Mês" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusPedido" Type="Edm.String" MaxLength="2" sap:label="Bloqueio Externo (id)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult30D" Type="Edm.String" MaxLength="1" sap:label="UNIDADEMEDIDA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Posto" Type="Edm.String" MaxLength="3" sap:label="Últimos 12 Meses" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemNotaFiscal" Type="Edm.String" MaxLength="1" sap:label="CNPJ do Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivelTexto" Type="Edm.String" MaxLength="20" sap:label="Posto Interno/Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusAbastecimento" Type="Edm.String" MaxLength="3" sap:label="Tipo (código)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoOperacao" Type="Edm.String" MaxLength="4" sap:label="Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="Moeda" sap:label="Origem (código)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Moeda_ID"/>
+                </Key>
+                <Property Name="Moeda_ID" Type="Edm.String" Nullable="false" MaxLength="5" sap:text="MoedaText" sap:label="Bloqueio Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MoedaText" Type="Edm.String" sap:label="Centro de Custo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="MoedaResult" sap:label="Id do Abastecimento" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Moeda"/>
+                </Key>
+                <Property Name="Moeda" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Status do Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemPedido" Type="Edm.String" MaxLength="1" sap:label="Últimos 30 Dias" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoRegiao" Type="Edm.String" MaxLength="4" sap:label="Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocMaterial" Type="Edm.String" MaxLength="10" sap:label="Sem Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeLitro" Type="Edm.String" MaxLength="3" sap:label="Tipo de Combustível" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Fornecedor" Type="Edm.String" MaxLength="10" sap:label="Status do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento" Type="Edm.String" MaxLength="10" sap:text="DataAbastecimento_T" sap:label="Operação" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento_T" Type="Edm.String" sap:label="Moeda (Dados mestre)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Equipamento" Type="Edm.String" MaxLength="18" sap:label="Moeda" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ErroRegistro" Type="Edm.String" MaxLength="1" sap:label="Moeda (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NumeroNFe" Type="Edm.String" MaxLength="9" sap:label="Moeda (Dados lançados)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bomba" Type="Edm.String" MaxLength="2" sap:label="Moeda" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocNotaFiscal" Type="Edm.String" MaxLength="10" sap:label="Sem Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Placa" Type="Edm.String" MaxLength="15" sap:label="Região" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NaoValidado" Type="Edm.String" MaxLength="1" sap:label="Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bico" Type="Edm.String" MaxLength="2" sap:label="UNIDADELITRO" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Turno" Type="Edm.String" MaxLength="1" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EhAfericao" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemDocMaterial" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Sequencia" Type="Edm.String" MaxLength="2" sap:label="Equipamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamentoTexto" Type="Edm.String" MaxLength="20" sap:label="Erro de Registro" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="AnoMes" Type="Edm.String" MaxLength="6" sap:label="Nº NF-e" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdBloqueioExterno" Type="Edm.String" MaxLength="10" sap:label="Bomba" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeMedida" Type="Edm.String" MaxLength="3" sap:label="Doc. Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult12M" Type="Edm.String" MaxLength="1" sap:label="Placa" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CnpjPosto" Type="Edm.String" MaxLength="16" sap:label="Não Validado" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemPosto" Type="Edm.String" MaxLength="1" sap:label="Bico" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivel" Type="Edm.String" MaxLength="2" sap:label="Turno" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Pedido" Type="Edm.String" MaxLength="10" sap:label="Aferição" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamento" Type="Edm.String" MaxLength="1" sap:label="Sem Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DescBloqueioExterno" Type="Edm.String" MaxLength="30" sap:label="Sequência" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CentroCusto" Type="Edm.String" MaxLength="10" sap:label="Origem do Lançamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdAbastecimento" Type="Edm.String" MaxLength="10" sap:label="Ano/Mês" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusPedido" Type="Edm.String" MaxLength="2" sap:label="Bloqueio Externo (id)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult30D" Type="Edm.String" MaxLength="1" sap:label="UNIDADEMEDIDA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Posto" Type="Edm.String" MaxLength="3" sap:label="Últimos 12 Meses" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemNotaFiscal" Type="Edm.String" MaxLength="1" sap:label="CNPJ do Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivelTexto" Type="Edm.String" MaxLength="20" sap:label="Posto Interno/Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusAbastecimento" Type="Edm.String" MaxLength="3" sap:label="Tipo (código)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoOperacao" Type="Edm.String" MaxLength="4" sap:label="Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="Turno" sap:label="Origem (código)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Turno_ID"/>
+                </Key>
+                <Property Name="Turno_ID" Type="Edm.String" Nullable="false" MaxLength="1" sap:text="TurnoText" sap:label="Bloqueio Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TurnoText" Type="Edm.String" sap:label="Centro de Custo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="TurnoResult" sap:label="Id do Abastecimento" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Turno"/>
+                </Key>
+                <Property Name="Turno" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Status do Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemPedido" Type="Edm.String" MaxLength="1" sap:label="Últimos 30 Dias" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoRegiao" Type="Edm.String" MaxLength="4" sap:label="Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocMaterial" Type="Edm.String" MaxLength="10" sap:label="Sem Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeLitro" Type="Edm.String" MaxLength="3" sap:label="Tipo de Combustível" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Fornecedor" Type="Edm.String" MaxLength="10" sap:label="Status do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento" Type="Edm.String" MaxLength="10" sap:text="DataAbastecimento_T" sap:label="Operação" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento_T" Type="Edm.String" sap:label="Turno (Dados mestre)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Equipamento" Type="Edm.String" MaxLength="18" sap:label="Turno" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ErroRegistro" Type="Edm.String" MaxLength="1" sap:label="Turno (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Moeda" Type="Edm.String" MaxLength="5" sap:label="Turno (Dados lançados)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NumeroNFe" Type="Edm.String" MaxLength="9" sap:label="Turno" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bomba" Type="Edm.String" MaxLength="2" sap:label="Sem Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocNotaFiscal" Type="Edm.String" MaxLength="10" sap:label="Região" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Placa" Type="Edm.String" MaxLength="15" sap:label="Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NaoValidado" Type="Edm.String" MaxLength="1" sap:label="UNIDADELITRO" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bico" Type="Edm.String" MaxLength="2" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EhAfericao" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemDocMaterial" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Sequencia" Type="Edm.String" MaxLength="2" sap:label="Equipamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamentoTexto" Type="Edm.String" MaxLength="20" sap:label="Erro de Registro" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="AnoMes" Type="Edm.String" MaxLength="6" sap:label="Moeda" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdBloqueioExterno" Type="Edm.String" MaxLength="10" sap:label="Nº NF-e" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeMedida" Type="Edm.String" MaxLength="3" sap:label="Bomba" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult12M" Type="Edm.String" MaxLength="1" sap:label="Doc. Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CnpjPosto" Type="Edm.String" MaxLength="16" sap:label="Placa" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemPosto" Type="Edm.String" MaxLength="1" sap:label="Não Validado" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivel" Type="Edm.String" MaxLength="2" sap:label="Bico" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Pedido" Type="Edm.String" MaxLength="10" sap:label="Aferição" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamento" Type="Edm.String" MaxLength="1" sap:label="Sem Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DescBloqueioExterno" Type="Edm.String" MaxLength="30" sap:label="Sequência" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CentroCusto" Type="Edm.String" MaxLength="10" sap:label="Origem do Lançamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdAbastecimento" Type="Edm.String" MaxLength="10" sap:label="Ano/Mês" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusPedido" Type="Edm.String" MaxLength="2" sap:label="Bloqueio Externo (id)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult30D" Type="Edm.String" MaxLength="1" sap:label="UNIDADEMEDIDA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Posto" Type="Edm.String" MaxLength="3" sap:label="Últimos 12 Meses" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemNotaFiscal" Type="Edm.String" MaxLength="1" sap:label="CNPJ do Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivelTexto" Type="Edm.String" MaxLength="20" sap:label="Posto Interno/Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusAbastecimento" Type="Edm.String" MaxLength="3" sap:label="Tipo (código)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoOperacao" Type="Edm.String" MaxLength="4" sap:label="Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="UnidadeMedida" sap:label="Origem (código)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UnidadeMedida_ID"/>
+                </Key>
+                <Property Name="UnidadeMedida_ID" Type="Edm.String" Nullable="false" MaxLength="3" sap:text="UnidadeMedidaText" sap:label="Bloqueio Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeMedidaText" Type="Edm.String" sap:label="Centro de Custo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="UnidadeMedidaResult" sap:label="Id do Abastecimento" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UnidadeMedida"/>
+                </Key>
+                <Property Name="UnidadeMedida" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Status do Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemPedido" Type="Edm.String" MaxLength="1" sap:label="Últimos 30 Dias" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoRegiao" Type="Edm.String" MaxLength="4" sap:label="Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocMaterial" Type="Edm.String" MaxLength="10" sap:label="Sem Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeLitro" Type="Edm.String" MaxLength="3" sap:label="Tipo de Combustível" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Fornecedor" Type="Edm.String" MaxLength="10" sap:label="Status do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento" Type="Edm.String" MaxLength="10" sap:text="DataAbastecimento_T" sap:label="Operação" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento_T" Type="Edm.String" sap:label="UNIDADEMEDIDA (Dados mestre)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Equipamento" Type="Edm.String" MaxLength="18" sap:label="UNIDADEMEDIDA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ErroRegistro" Type="Edm.String" MaxLength="1" sap:label="UNIDADEMEDIDA (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Moeda" Type="Edm.String" MaxLength="5" sap:label="UNIDADEMEDIDA (Dados lançados)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NumeroNFe" Type="Edm.String" MaxLength="9" sap:label="UNIDADEMEDIDA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bomba" Type="Edm.String" MaxLength="2" sap:label="Sem Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocNotaFiscal" Type="Edm.String" MaxLength="10" sap:label="Região" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Placa" Type="Edm.String" MaxLength="15" sap:label="Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NaoValidado" Type="Edm.String" MaxLength="1" sap:label="UNIDADELITRO" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bico" Type="Edm.String" MaxLength="2" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Turno" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EhAfericao" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemDocMaterial" Type="Edm.String" MaxLength="1" sap:label="Equipamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Sequencia" Type="Edm.String" MaxLength="2" sap:label="Erro de Registro" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamentoTexto" Type="Edm.String" MaxLength="20" sap:label="Moeda" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="AnoMes" Type="Edm.String" MaxLength="6" sap:label="Nº NF-e" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdBloqueioExterno" Type="Edm.String" MaxLength="10" sap:label="Bomba" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult12M" Type="Edm.String" MaxLength="1" sap:label="Doc. Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CnpjPosto" Type="Edm.String" MaxLength="16" sap:label="Placa" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemPosto" Type="Edm.String" MaxLength="1" sap:label="Não Validado" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivel" Type="Edm.String" MaxLength="2" sap:label="Bico" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Pedido" Type="Edm.String" MaxLength="10" sap:label="Turno" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamento" Type="Edm.String" MaxLength="1" sap:label="Aferição" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DescBloqueioExterno" Type="Edm.String" MaxLength="30" sap:label="Sem Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CentroCusto" Type="Edm.String" MaxLength="10" sap:label="Sequência" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdAbastecimento" Type="Edm.String" MaxLength="10" sap:label="Origem do Lançamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusPedido" Type="Edm.String" MaxLength="2" sap:label="Ano/Mês" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult30D" Type="Edm.String" MaxLength="1" sap:label="Bloqueio Externo (id)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Posto" Type="Edm.String" MaxLength="3" sap:label="Últimos 12 Meses" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemNotaFiscal" Type="Edm.String" MaxLength="1" sap:label="CNPJ do Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivelTexto" Type="Edm.String" MaxLength="20" sap:label="Posto Interno/Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusAbastecimento" Type="Edm.String" MaxLength="3" sap:label="Tipo (código)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoOperacao" Type="Edm.String" MaxLength="4" sap:label="Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="TipoCombustivel" sap:label="Origem (código)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TipoCombustivel_ID"/>
+                </Key>
+                <Property Name="TipoCombustivel_ID" Type="Edm.String" Nullable="false" MaxLength="2" sap:text="TipoCombustivelText" sap:label="Bloqueio Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivelText" Type="Edm.String" sap:label="Centro de Custo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="TipoCombustivelResult" sap:label="Id do Abastecimento" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TipoCombustivel"/>
+                </Key>
+                <Property Name="TipoCombustivel" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Status do Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemPedido" Type="Edm.String" MaxLength="1" sap:label="Últimos 30 Dias" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoRegiao" Type="Edm.String" MaxLength="4" sap:label="Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocMaterial" Type="Edm.String" MaxLength="10" sap:label="Sem Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeLitro" Type="Edm.String" MaxLength="3" sap:label="Tipo de Combustível" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Fornecedor" Type="Edm.String" MaxLength="10" sap:label="Status do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento" Type="Edm.String" MaxLength="10" sap:text="DataAbastecimento_T" sap:label="Operação" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento_T" Type="Edm.String" sap:label="Tipo (código) (Dados mestre)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Equipamento" Type="Edm.String" MaxLength="18" sap:label="Tipo (código)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ErroRegistro" Type="Edm.String" MaxLength="1" sap:label="Tipo (código) (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Moeda" Type="Edm.String" MaxLength="5" sap:label="Tipo (código) (Dados lançados)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NumeroNFe" Type="Edm.String" MaxLength="9" sap:label="Tipo (código)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bomba" Type="Edm.String" MaxLength="2" sap:label="Sem Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocNotaFiscal" Type="Edm.String" MaxLength="10" sap:label="Região" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Placa" Type="Edm.String" MaxLength="15" sap:label="Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NaoValidado" Type="Edm.String" MaxLength="1" sap:label="UNIDADELITRO" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bico" Type="Edm.String" MaxLength="2" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Turno" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EhAfericao" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemDocMaterial" Type="Edm.String" MaxLength="1" sap:label="Equipamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Sequencia" Type="Edm.String" MaxLength="2" sap:label="Erro de Registro" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamentoTexto" Type="Edm.String" MaxLength="20" sap:label="Moeda" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="AnoMes" Type="Edm.String" MaxLength="6" sap:label="Nº NF-e" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdBloqueioExterno" Type="Edm.String" MaxLength="10" sap:label="Bomba" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeMedida" Type="Edm.String" MaxLength="3" sap:label="Doc. Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult12M" Type="Edm.String" MaxLength="1" sap:label="Placa" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CnpjPosto" Type="Edm.String" MaxLength="16" sap:label="Não Validado" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemPosto" Type="Edm.String" MaxLength="1" sap:label="Bico" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Pedido" Type="Edm.String" MaxLength="10" sap:label="Turno" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamento" Type="Edm.String" MaxLength="1" sap:label="Aferição" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DescBloqueioExterno" Type="Edm.String" MaxLength="30" sap:label="Sem Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CentroCusto" Type="Edm.String" MaxLength="10" sap:label="Sequência" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdAbastecimento" Type="Edm.String" MaxLength="10" sap:label="Origem do Lançamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusPedido" Type="Edm.String" MaxLength="2" sap:label="Ano/Mês" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult30D" Type="Edm.String" MaxLength="1" sap:label="Bloqueio Externo (id)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Posto" Type="Edm.String" MaxLength="3" sap:label="UNIDADEMEDIDA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemNotaFiscal" Type="Edm.String" MaxLength="1" sap:label="Últimos 12 Meses" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivelTexto" Type="Edm.String" MaxLength="20" sap:label="CNPJ do Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusAbastecimento" Type="Edm.String" MaxLength="3" sap:label="Posto Interno/Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoOperacao" Type="Edm.String" MaxLength="4" sap:label="Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="OrigemLancamento" sap:label="Origem (código)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="OrigemLancamento_ID"/>
+                </Key>
+                <Property Name="OrigemLancamento_ID" Type="Edm.String" Nullable="false" MaxLength="1" sap:text="OrigemLancamentoText" sap:label="Bloqueio Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamentoText" Type="Edm.String" sap:label="Centro de Custo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="OrigemLancamentoResult" sap:label="Id do Abastecimento" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="OrigemLancamento"/>
+                </Key>
+                <Property Name="OrigemLancamento" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Status do Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemPedido" Type="Edm.String" MaxLength="1" sap:label="Últimos 30 Dias" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoRegiao" Type="Edm.String" MaxLength="4" sap:label="Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocMaterial" Type="Edm.String" MaxLength="10" sap:label="Sem Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeLitro" Type="Edm.String" MaxLength="3" sap:label="Tipo de Combustível" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Fornecedor" Type="Edm.String" MaxLength="10" sap:label="Status do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento" Type="Edm.String" MaxLength="10" sap:text="DataAbastecimento_T" sap:label="Operação" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento_T" Type="Edm.String" sap:label="Origem (código) (Dados mestre)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Equipamento" Type="Edm.String" MaxLength="18" sap:label="Origem (código)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ErroRegistro" Type="Edm.String" MaxLength="1" sap:label="Origem (código) (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Moeda" Type="Edm.String" MaxLength="5" sap:label="Origem (código) (Dados lançados)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NumeroNFe" Type="Edm.String" MaxLength="9" sap:label="Origem (código)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bomba" Type="Edm.String" MaxLength="2" sap:label="Sem Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocNotaFiscal" Type="Edm.String" MaxLength="10" sap:label="Região" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Placa" Type="Edm.String" MaxLength="15" sap:label="Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NaoValidado" Type="Edm.String" MaxLength="1" sap:label="UNIDADELITRO" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bico" Type="Edm.String" MaxLength="2" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Turno" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EhAfericao" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemDocMaterial" Type="Edm.String" MaxLength="1" sap:label="Equipamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Sequencia" Type="Edm.String" MaxLength="2" sap:label="Erro de Registro" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamentoTexto" Type="Edm.String" MaxLength="20" sap:label="Moeda" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="AnoMes" Type="Edm.String" MaxLength="6" sap:label="Nº NF-e" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdBloqueioExterno" Type="Edm.String" MaxLength="10" sap:label="Bomba" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeMedida" Type="Edm.String" MaxLength="3" sap:label="Doc. Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult12M" Type="Edm.String" MaxLength="1" sap:label="Placa" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CnpjPosto" Type="Edm.String" MaxLength="16" sap:label="Não Validado" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemPosto" Type="Edm.String" MaxLength="1" sap:label="Bico" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivel" Type="Edm.String" MaxLength="2" sap:label="Turno" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Pedido" Type="Edm.String" MaxLength="10" sap:label="Aferição" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DescBloqueioExterno" Type="Edm.String" MaxLength="30" sap:label="Sem Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CentroCusto" Type="Edm.String" MaxLength="10" sap:label="Sequência" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdAbastecimento" Type="Edm.String" MaxLength="10" sap:label="Origem do Lançamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusPedido" Type="Edm.String" MaxLength="2" sap:label="Ano/Mês" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult30D" Type="Edm.String" MaxLength="1" sap:label="Bloqueio Externo (id)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Posto" Type="Edm.String" MaxLength="3" sap:label="UNIDADEMEDIDA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemNotaFiscal" Type="Edm.String" MaxLength="1" sap:label="Últimos 12 Meses" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivelTexto" Type="Edm.String" MaxLength="20" sap:label="CNPJ do Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusAbastecimento" Type="Edm.String" MaxLength="3" sap:label="Posto Interno/Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoOperacao" Type="Edm.String" MaxLength="4" sap:label="Tipo (código)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="StatusPedido" sap:label="Pedido" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StatusPedido_ID"/>
+                </Key>
+                <Property Name="StatusPedido_ID" Type="Edm.String" Nullable="false" MaxLength="2" sap:text="StatusPedidoText" sap:label="Bloqueio Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusPedidoText" Type="Edm.String" sap:label="Centro de Custo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="StatusPedidoResult" sap:label="Id do Abastecimento" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StatusPedido"/>
+                </Key>
+                <Property Name="StatusPedido" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Status do Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemPedido" Type="Edm.String" MaxLength="1" sap:label="Últimos 30 Dias" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoRegiao" Type="Edm.String" MaxLength="4" sap:label="Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocMaterial" Type="Edm.String" MaxLength="10" sap:label="Sem Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeLitro" Type="Edm.String" MaxLength="3" sap:label="Tipo de Combustível" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Fornecedor" Type="Edm.String" MaxLength="10" sap:label="Status do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento" Type="Edm.String" MaxLength="10" sap:text="DataAbastecimento_T" sap:label="Operação" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DataAbastecimento_T" Type="Edm.String" sap:label="Status do Pedido (Dados mestre)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Equipamento" Type="Edm.String" MaxLength="18" sap:label="Status do Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ErroRegistro" Type="Edm.String" MaxLength="1" sap:label="Status do Pedido (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Moeda" Type="Edm.String" MaxLength="5" sap:label="Status do Pedido (Dados lançados)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NumeroNFe" Type="Edm.String" MaxLength="9" sap:label="Status do Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bomba" Type="Edm.String" MaxLength="2" sap:label="Sem Pedido" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocNotaFiscal" Type="Edm.String" MaxLength="10" sap:label="Região" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Placa" Type="Edm.String" MaxLength="15" sap:label="Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NaoValidado" Type="Edm.String" MaxLength="1" sap:label="UNIDADELITRO" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bico" Type="Edm.String" MaxLength="2" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Turno" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EhAfericao" Type="Edm.String" MaxLength="1" sap:label="Data do Abastecimento (Descrição)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemDocMaterial" Type="Edm.String" MaxLength="1" sap:label="Equipamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Sequencia" Type="Edm.String" MaxLength="2" sap:label="Erro de Registro" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamentoTexto" Type="Edm.String" MaxLength="20" sap:label="Moeda" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="AnoMes" Type="Edm.String" MaxLength="6" sap:label="Nº NF-e" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdBloqueioExterno" Type="Edm.String" MaxLength="10" sap:label="Bomba" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UnidadeMedida" Type="Edm.String" MaxLength="3" sap:label="Doc. Nota Fiscal" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult12M" Type="Edm.String" MaxLength="1" sap:label="Placa" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CnpjPosto" Type="Edm.String" MaxLength="16" sap:label="Não Validado" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemPosto" Type="Edm.String" MaxLength="1" sap:label="Bico" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivel" Type="Edm.String" MaxLength="2" sap:label="Turno" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Pedido" Type="Edm.String" MaxLength="10" sap:label="Aferição" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="OrigemLancamento" Type="Edm.String" MaxLength="1" sap:label="Sem Doc. Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DescBloqueioExterno" Type="Edm.String" MaxLength="30" sap:label="Sequência" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CentroCusto" Type="Edm.String" MaxLength="10" sap:label="Origem do Lançamento" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IdAbastecimento" Type="Edm.String" MaxLength="10" sap:label="Ano/Mês" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ult30D" Type="Edm.String" MaxLength="1" sap:label="Bloqueio Externo (id)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Posto" Type="Edm.String" MaxLength="3" sap:label="UNIDADEMEDIDA" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SemNotaFiscal" Type="Edm.String" MaxLength="1" sap:label="Últimos 12 Meses" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TipoCombustivelTexto" Type="Edm.String" MaxLength="20" sap:label="CNPJ do Posto" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StatusAbastecimento" Type="Edm.String" MaxLength="3" sap:label="Posto Interno/Externo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CodigoOperacao" Type="Edm.String" MaxLength="4" sap:label="Tipo (código)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="ODataQueryAdditionalMetadata" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ODataQueryMetadata"/>
+                </Key>
+                <Property Name="ODataQueryMetadata" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ODataQueryMetadataValue_Current" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ODataQueryMetadataValueAtDefine" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="xACCAOxGSM_Q_ABAST_OVP_CDS_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="xACCAOxGSM_Q_ABAST_OVP" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="UnidadeLitro" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.UnidadeLitro" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="UnidadeLitroResults" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.UnidadeLitroResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Moeda" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.Moeda" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="MoedaResults" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.MoedaResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Turno" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.Turno" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="TurnoResults" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.TurnoResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="UnidadeMedida" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.UnidadeMedida" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="UnidadeMedidaResults" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.UnidadeMedidaResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="TipoCombustivel" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.TipoCombustivel" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="TipoCombustivelResults" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.TipoCombustivelResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="OrigemLancamento" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.OrigemLancamento" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="OrigemLancamentoResults" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.OrigemLancamentoResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="StatusPedido" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.StatusPedido" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="StatusPedidoResults" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.StatusPedidoResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="AdditionalMetadata" EntityType="xACCAOxGSM_Q_ABAST_OVP_CDS.ODataQueryAdditionalMetadata" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/UnidadeLitro" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="UNIDADELITRO ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="UnidadeLitro"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UnidadeLitro"/>
+                                    <PropertyValue Property="ValueListProperty" String="UnidadeLitro_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="UnidadeLitroText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/Moeda" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Currency ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="Moeda"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Moeda"/>
+                                    <PropertyValue Property="ValueListProperty" String="Moeda_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MoedaText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/Turno" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Turno ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="Turno"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Turno"/>
+                                    <PropertyValue Property="ValueListProperty" String="Turno_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="TurnoText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/UnidadeMedida" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="UNIDADEMEDIDA ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="UnidadeMedida"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UnidadeMedida"/>
+                                    <PropertyValue Property="ValueListProperty" String="UnidadeMedida_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="UnidadeMedidaText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/TipoCombustivel" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Tipo (código) ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="TipoCombustivel"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="TipoCombustivel"/>
+                                    <PropertyValue Property="ValueListProperty" String="TipoCombustivel_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="TipoCombustivelText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/OrigemLancamento" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Origem (código) ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="OrigemLancamento"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="OrigemLancamento"/>
+                                    <PropertyValue Property="ValueListProperty" String="OrigemLancamento_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="OrigemLancamentoText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVPType/StatusPedido" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Status do Pedido ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="StatusPedido"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="StatusPedido"/>
+                                    <PropertyValue Property="ValueListProperty" String="StatusPedido_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="StatusPedidoText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="xACCAOxGSM_Q_ABAST_OVP_CDS.xACCAOxGSM_Q_ABAST_OVP_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="/sap/opu/odata/accao/GSM_Q_ABAST_OVP_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="/sap/opu/odata/accao/GSM_Q_ABAST_OVP_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

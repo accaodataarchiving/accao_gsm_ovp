@@ -1,0 +1,28 @@
+{
+  "generationParameters": {
+    "generationDate": "Thu Oct 22 2026 18:45:35 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "SAP System (ABAP On-Premise)",
+    "metadataFilename": "",
+    "serviceUrl": "http://sapdev:8000/sap/opu/odata/accao/GSM_Q_ABAST_OVP_CDS",
+    "appName": "accao_gsm_ovp",
+    "appTitle": "Overview para Acção Gestão de Abastecimentos",
+    "appDescription": "Overview para Acção Gestão de Abastecimentos",
+    "appNamespace": "br.com.accao.gsm",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.136.10",
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.33.0",
+    "template": "Overview Page V2",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Filter Entity Type",
+        "value": "xACCAOxGSM_Q_ABAST_OVP"
+      }
+    ],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```"
+  }
+}
